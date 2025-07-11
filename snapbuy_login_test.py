@@ -11,7 +11,7 @@ driver = webdriver.Chrome(service=service)
 try:
     driver.get("https://snapbuy-ecommerce-oqbb.onrender.com/account/my-login")
 
-    # ✅ Wait up to 30 seconds for username field to appear
+    # Wait up to 30 seconds for username field to appear
     wait = WebDriverWait(driver, 30)
     username = wait.until(EC.presence_of_element_located((By.NAME, "username")))
     password = driver.find_element(By.NAME, "password")
@@ -22,13 +22,13 @@ try:
     login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
     login_button.click()
 
-    # ✅ Wait for possible redirect to dashboard
+    # Wait for possible redirect to dashboard
     wait.until(lambda driver: "dashboard" in driver.current_url)
 
     if "dashboard" in driver.current_url:
-        print("✅ Login Test Passed: Dashboard loaded.")
+        print("Login Test Passed: Dashboard loaded.")
     else:
-        print("❌ Login Test Failed: Dashboard not loaded.")
+        print("Login Test Failed: Dashboard not loaded.")
 
 finally:
     driver.quit()
